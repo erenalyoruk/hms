@@ -6,12 +6,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
 public class Main extends Application {
 
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         Label label = new Label("Label");
         Scene scene = new Scene(new StackPane(label), 800, 600);
         stage.setScene(scene);

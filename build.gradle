@@ -1,44 +1,68 @@
 plugins {
-    id 'java'
-    id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.13'
-    id "org.beryx.jlink" version "2.25.0"
+	id 'java'
+	id 'application'
+	id 'org.openjfx.javafxplugin' version '0.0.13'
+	id "org.beryx.jlink" version "2.25.0"
+	id "com.diffplug.spotless" version "6.12.0"
 }
 
 group 'net.erenalyoruk'
 version '1.0-SNAPSHOT'
 
 javafx {
-    version = '19'
-    modules = [ 'javafx.controls', 'javafx.fxml' ]
+	version = '19'
+	modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
 application {
-    mainClass = 'net.erenalyoruk.hms.Main'
+	mainClass = 'net.erenalyoruk.hms.Main'
 }
 
 jlink {
-    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
-    launcher {
-        name = "Hospital Management System"
-    }
+	options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+	launcher {
+		name = "Hospital Management System"
+	}
 }
 
 jar {
-    manifest {
-        attributes("Main-Class": "net.erenalyoruk.hms.Main")
-    }
+	manifest {
+		attributes("Main-Class": "net.erenalyoruk.hms.Main")
+	}
 }
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
+spotless {
+	format 'misc', {
+		target '**/.gitignore', '**/*.gradle', '**/*.md'
+		indentWithTabs()
+		trimTrailingWhitespace()
+		endWithNewline()
+	}
+
+	java {
+		googleJavaFormat().aosp().reflowLongStrings()
+		formatAnnotations()
+		importOrder()
+		trimTrailingWhitespace()
+	}
+}
+
+run.dependsOn 'spotlessApply'
+
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+	implementation 'org.hibernate.orm:hibernate-core:6.1.5.Final'
+	implementation 'org.hibernate.orm:hibernate-hikaricp:6.1.5.Final'
+	implementation 'com.h2database:h2:2.1.214'
+	implementation 'com.zaxxer:HikariCP:5.0.1'
+
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
 }
 
 test {
-    useJUnitPlatform()
+	useJUnitPlatform()
 }
