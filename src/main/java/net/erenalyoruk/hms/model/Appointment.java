@@ -19,7 +19,7 @@ public class Appointment {
 
     @OneToOne
     @JoinColumn(name = "patient_id", referencedColumnName = "account_id")
-    private User patient;
+    private Account patient;
 
     @OneToOne
     @JoinColumn(name = "doctor_id")
@@ -29,7 +29,7 @@ public class Appointment {
     @Column(name = "appointment_status")
     private AppointmentStatus status = AppointmentStatus.WAITING;
 
-    public Appointment(User patient, Doctor doctor) {
+    public Appointment(Account patient, Doctor doctor) {
         this.patient = patient;
         this.doctor = doctor;
     }
