@@ -8,5 +8,8 @@
         <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
         <property name="connection.driver_class">org.h2.Driver</property>
         <property name="connection.url">jdbc:h2:file:./h2</property>
+		<property name="hibernate.connection.CharSet">utf8</property>
+		<property name="hibernate.connection.characterEncoding">utf8</property>
+		<property name="hibernate.connection.useUnicode">true</property>
     </session-factory>
 </hibernate-configuration>
