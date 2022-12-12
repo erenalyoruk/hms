@@ -19,9 +19,7 @@ public class Doctor {
     @JoinColumn(name = "account_id")
     private Account account;
 
-    @ManyToMany
-    @JoinColumn(name = "clinic_id")
-    private Set<Clinic> clinics = new HashSet<>();
+    @ManyToMany private Set<Clinic> clinics = new HashSet<>();
 
     public Doctor(Account account, Set<Clinic> clinics) {
         this.account = account;
