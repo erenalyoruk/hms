@@ -12,11 +12,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Admin {
     @Id
-    @OneToOne
-    @JoinColumn(name = "account_id")
-    private Account account;
+    private Long id;
 
-    public Admin(Account account) {
-        this.account = account;
-    }
+    @MapsId
+    @OneToOne(mappedBy = "admin")
+    @JoinColumn(name = "account_id", nullable = false, unique = true)
+    private Account account;
 }

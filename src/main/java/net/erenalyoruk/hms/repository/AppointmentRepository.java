@@ -2,64 +2,66 @@ package net.erenalyoruk.hms.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
+import net.erenalyoruk.hms.model.*;
+
 import java.sql.Timestamp;
 import java.util.List;
-import net.erenalyoruk.hms.model.Account;
-import net.erenalyoruk.hms.model.Appointment;
-import net.erenalyoruk.hms.model.Doctor;
 
-public class AppointmentRepository implements IAppointmentRepository {
+public class AppointmentRepository {
     private final EntityManager em;
 
     public AppointmentRepository(EntityManager em) {
         this.em = em;
     }
 
-    @Override
-    public List<Appointment> findAll() {
-        TypedQuery<Appointment> query = em.createQuery("FROM Appointment appointment", Appointment.class);
-        return query.getResultList();
-    }
+	public List<Appointment> findAll() {
+		TypedQuery<Appointment> query = em.createQuery("FROM Appointment a", Appointment.class);
+		return query.getResultList();
+	}
 
-    @Override
-    public Appointment findOneById(int id) {
-        return em.find(Appointment.class, id);
-    }
+	public Appointment findById(Long id) {
+		return em.find(Appointment.class, id);
+	}
 
-    @Override
-    public List<Appointment> findManyByPatient(Account account) {
-        TypedQuery<Appointment> query = em.createQuery(
-            "FROM Appointment appointment WHERE appointment.patient = ?1",
-            Appointment.class
-        );
-        query.setParameter(1, account);
-        return query.getResultList();
-    }
+	public Appointment findByPrescription(Prescription prescription) {
+		TypedQuery<Appointment> query = em.createQuery("FROM Appointment a WHERE a.prescription = ?1", Appointment.class);
+		query.setParameter(1, prescription);
+		return query.getSingleResult();
+	}
 
-    @Override
-    public List<Appointment> findManyByDoctor(Doctor doctor) {
-        TypedQuery<Appointment> query = em.createQuery(
-            "FROM Appointment appointment WHERE appointment.doctor = ?1",
-            Appointment.class
-        );
-        query.setParameter(1, doctor);
-        return query.getResultList();
-    }
+	public List<Appointment> findByDoctor(Doctor doctor) {
+		TypedQuery<Appointment> query = em.createQuery("FROM Appointment a WHERE a.doctor = ?1", Appointment.class);
+		query.setParameter(1, doctor);
+		return query.getResultList();
+	}
 
-    @Override
-    public List<Appointment> findManyByTimestamp(Timestamp timestamp) {
-        TypedQuery<Appointment> query = em.createQuery(
-            "FROM Appointment appointment WHERE appointment.timestamp = ?1",
-            Appointment.class
-        );
-        query.setParameter(1, timestamp);
-        return query.getResultList();
-    }
+	public List<Appointment> findByPatient(Patient patient) {
+		TypedQuery<Appointment> query = em.createQuery("FROM Appointment a WHERE a.patient = ?1", Appointment.class);
+		query.setParameter(1, patient);
+		return query.getResultList();
+	}
 
-    @Override
-    public void insertOne(Appointment appointment) {
-        em.getTransaction().begin();
-        em.persist(appointment);
-        em.getTransaction().commit();
-    }
+	public List<Appointment> findByTimestamp(Timestamp timestamp) {
+		TypedQuery<Appointment> query = em.createQuery("FROM Appointment a WHERE a.timestamp = ?1", Appointment.class);
+		query.setParameter(1, timestamp);
+		return query.getResultList();
+	}
+
+	public List<Appointment> findByStatus(AppointmentStatus status) {
+		TypedQuery<Appointment> query = em.createQuery("FROM Appointment a WHERE a.status = ?1", Appointment.class);
+		query.setParameter(1, status);
+		return query.getResultList();
+	}
+
+	public void insertOne(Appointment appointment) {
+		em.getTransaction().begin();
+		em.persist(appointment);
+		em.getTransaction().commit();
+	}
+
+	public void removeOne(Appointment appointment) {
+		em.getTransaction().begin();
+		em.remove(appointment);
+		em.getTransaction().commit();
+	}
 }

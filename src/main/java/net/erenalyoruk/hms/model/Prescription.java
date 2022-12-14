@@ -14,27 +14,20 @@ public class Prescription {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "prescription_id")
-    private int id;
+    private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "appointment_id")
+    @OneToOne(mappedBy = "prescription")
+    @JoinColumn(name = "appointment_id", unique = true, nullable = false)
     private Appointment appointment;
 
     @ManyToOne
-    @JoinColumn(name = "account_id")
-    private Account patient;
+    @JoinColumn(name = "patient_id", referencedColumnName = "account_id", nullable = false)
+    private Patient patient;
 
     @ManyToOne
-    @JoinColumn(name = "doctor_id")
+    @JoinColumn(name = "doctor_id", referencedColumnName = "account_id", nullable = false)
     private Doctor doctor;
 
-    @Column(name = "prescription_info", length = 65535)
-    private String info;
-
-    public Prescription(Appointment appointment, String info) {
-        this.appointment = appointment;
-        this.patient = appointment.getPatient();
-        this.doctor = appointment.getDoctor();
-        this.info = info;
-    }
+    @Column(name = "info", length = 65535)
+    private String details;
 }

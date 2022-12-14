@@ -15,26 +15,24 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "appointment_id")
-    private int id;
+    private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "patient_id", referencedColumnName = "account_id")
-    private Account patient;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "prescription_id")
+    private Prescription prescription;
 
-    @OneToOne
-    @JoinColumn(name = "doctor_id")
+    @ManyToOne
+    @JoinColumn(name = "patient_id", referencedColumnName = "account_id", nullable = false)
+    private Patient patient;
+
+    @ManyToOne
+    @JoinColumn(name = "doctor_id", referencedColumnName = "account_id", nullable = false)
     private Doctor doctor;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "appointment_status")
-    private AppointmentStatus status = AppointmentStatus.WAITING;
-
-    @Column(name = "appointment_timestamp")
+    @Column(name = "timestamp", nullable = false)
     private Timestamp timestamp;
 
-    public Appointment(Account patient, Doctor doctor, Timestamp timestamp) {
-        this.patient = patient;
-        this.doctor = doctor;
-        this.timestamp = timestamp;
-    }
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false)
+    private AppointmentStatus status = AppointmentStatus.WAITING;
 }
