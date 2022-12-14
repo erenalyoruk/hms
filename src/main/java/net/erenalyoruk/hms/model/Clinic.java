@@ -1,8 +1,8 @@
 package net.erenalyoruk.hms.model;
 
 import jakarta.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +13,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Clinic {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "clinic_id")
@@ -23,7 +22,7 @@ public class Clinic {
     private String name;
 
     @ManyToMany(mappedBy = "clinics")
-    private Set<Doctor> doctors = new HashSet<>();
+    private List<Doctor> doctors = new ArrayList<>();
 
     public Clinic(String name) {
         this.name = name;

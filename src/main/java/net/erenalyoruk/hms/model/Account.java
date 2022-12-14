@@ -11,7 +11,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Account {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account_id", nullable = false)
@@ -40,13 +39,14 @@ public class Account {
     private Gender gender;
 
     public Account(
-            String email,
-            String securityNumber,
-            String password,
-            String firstName,
-            String lastName,
-            int age,
-            Gender gender) {
+        String email,
+        String securityNumber,
+        String password,
+        String firstName,
+        String lastName,
+        int age,
+        Gender gender
+    ) {
         this.email = email;
         this.securityNumber = securityNumber;
         this.password = password;

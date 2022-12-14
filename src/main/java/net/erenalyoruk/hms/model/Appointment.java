@@ -1,6 +1,7 @@
 package net.erenalyoruk.hms.model;
 
 import jakarta.persistence.*;
+import java.sql.Timestamp;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,7 +12,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Appointment {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "appointment_id")
@@ -29,8 +29,12 @@ public class Appointment {
     @Column(name = "appointment_status")
     private AppointmentStatus status = AppointmentStatus.WAITING;
 
-    public Appointment(Account patient, Doctor doctor) {
+    @Column(name = "appointment_timestamp")
+    private Timestamp timestamp;
+
+    public Appointment(Account patient, Doctor doctor, Timestamp timestamp) {
         this.patient = patient;
         this.doctor = doctor;
+        this.timestamp = timestamp;
     }
 }
