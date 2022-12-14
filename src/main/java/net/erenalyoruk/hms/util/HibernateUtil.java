@@ -41,6 +41,7 @@ public class HibernateUtil {
             new Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Account.class)
+                .addAnnotatedClass(Admin.class)
                 .addAnnotatedClass(Appointment.class)
                 .addAnnotatedClass(Clinic.class)
                 .addAnnotatedClass(Doctor.class)
