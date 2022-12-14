@@ -7,7 +7,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
-
     private SessionFactory sessionFactory;
     private Session currentSession;
 
@@ -39,14 +38,14 @@ public class HibernateUtil {
 
     private void initializeHibernate() {
         sessionFactory =
-                new Configuration()
-                        .configure("hibernate.cfg.xml")
-                        .addAnnotatedClass(Account.class)
-                        .addAnnotatedClass(Appointment.class)
-                        .addAnnotatedClass(Clinic.class)
-                        .addAnnotatedClass(Doctor.class)
-                        .addAnnotatedClass(Prescription.class)
-                        .buildSessionFactory();
+            new Configuration()
+                .configure("hibernate.cfg.xml")
+                .addAnnotatedClass(Account.class)
+                .addAnnotatedClass(Appointment.class)
+                .addAnnotatedClass(Clinic.class)
+                .addAnnotatedClass(Doctor.class)
+                .addAnnotatedClass(Prescription.class)
+                .buildSessionFactory();
 
         currentSession = sessionFactory.getCurrentSession();
         currentSession.beginTransaction();

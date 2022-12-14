@@ -1,8 +1,8 @@
 package net.erenalyoruk.hms.model;
 
 import jakarta.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,15 +13,15 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Doctor {
-
     @Id
     @OneToOne
     @JoinColumn(name = "account_id")
     private Account account;
 
-    @ManyToMany private Set<Clinic> clinics = new HashSet<>();
+    @ManyToMany
+    private List<Clinic> clinics = new ArrayList<>();
 
-    public Doctor(Account account, Set<Clinic> clinics) {
+    public Doctor(Account account, List<Clinic> clinics) {
         this.account = account;
         this.clinics = clinics;
     }
