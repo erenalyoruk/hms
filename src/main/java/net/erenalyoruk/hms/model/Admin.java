@@ -11,8 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Admin {
-    @Id
-    private Long id;
+    @Id private Long id;
 
     @MapsId
     @OneToOne

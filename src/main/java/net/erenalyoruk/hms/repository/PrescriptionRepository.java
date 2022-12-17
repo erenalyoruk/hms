@@ -18,27 +18,28 @@ public class PrescriptionRepository {
     }
 
     public List<Prescription> findAll() {
-        TypedQuery<Prescription> query = em.createQuery("FROM Prescription prescription", Prescription.class);
+        TypedQuery<Prescription> query =
+                em.createQuery("FROM Prescription prescription", Prescription.class);
         return query.getResultList();
     }
 
     public Prescription findOneByAppointment(Appointment appointment) {
-        TypedQuery<Prescription> query = em.createQuery(
-            "FROM Prescription p WHERE p.appointment = ?1",
-            Prescription.class
-        );
+        TypedQuery<Prescription> query =
+                em.createQuery("FROM Prescription p WHERE p.appointment = ?1", Prescription.class);
         query.setParameter(1, appointment);
         return query.getSingleResult();
     }
 
     public List<Prescription> findManyByPatient(Patient patient) {
-        TypedQuery<Prescription> query = em.createQuery("FROM Prescription p WHERE p.patient = ?1", Prescription.class);
+        TypedQuery<Prescription> query =
+                em.createQuery("FROM Prescription p WHERE p.patient = ?1", Prescription.class);
         query.setParameter(1, patient);
         return query.getResultList();
     }
 
     public List<Prescription> findManyByDoctor(Doctor doctor) {
-        TypedQuery<Prescription> query = em.createQuery("FROM Prescription p WHERE p.doctor = ?1", Prescription.class);
+        TypedQuery<Prescription> query =
+                em.createQuery("FROM Prescription p WHERE p.doctor = ?1", Prescription.class);
         query.setParameter(1, doctor);
         return query.getResultList();
     }

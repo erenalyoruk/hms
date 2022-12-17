@@ -5,7 +5,7 @@ JavaFX Desktop application for managing appointments.
 ## Requirements
 
 - JDK 17
-  - JAVA_HOME should be set for gradle.
+- JAVA_HOME should be set for gradle.
 
 ## Collaboration
 

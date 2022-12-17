@@ -17,7 +17,11 @@ public class Appointment {
     @Column(name = "appointment_id")
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "appointment", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(
+            fetch = FetchType.LAZY,
+            mappedBy = "appointment",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
     @JoinColumn(name = "prescription_id")
     private Prescription prescription;
 

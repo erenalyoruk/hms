@@ -31,13 +31,15 @@ public class AccountRepository {
     }
 
     public Account findOneByCitizenNumber(String citizenNumber) throws NoResultException {
-        TypedQuery<Account> query = em.createQuery("FROM Account a WHERE a.citizenNumber = ?1", Account.class);
+        TypedQuery<Account> query =
+                em.createQuery("FROM Account a WHERE a.citizenNumber = ?1", Account.class);
         query.setParameter(1, citizenNumber);
         return query.getSingleResult();
     }
 
     public Account findOneByEmail(String email) throws NoResultException {
-        TypedQuery<Account> query = em.createQuery("FROM Account a WHERE a.email = ?1", Account.class);
+        TypedQuery<Account> query =
+                em.createQuery("FROM Account a WHERE a.email = ?1", Account.class);
         query.setParameter(1, email);
         return query.getSingleResult();
     }

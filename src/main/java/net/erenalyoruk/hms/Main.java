@@ -33,15 +33,17 @@ public class Main {
         account.setPassword("test123");
         account.setDateOfBirth(new Timestamp(System.currentTimeMillis()));
         account.makeDoctor();
+        account.setFirstName("Eren");
+        account.setLastName("Alyörük");
         accountService.createAccount(account);
 
         appointmentService.createAppointment(
-            account.getPatient(),
-            account.getDoctor(),
-            new Timestamp(System.currentTimeMillis())
-        );
+                account.getPatient(),
+                account.getDoctor(),
+                new Timestamp(System.currentTimeMillis()));
 
-        prescriptionService.createPrescription(appointmentService.getAppointments(account.getPatient()).get(0), "test");
+        prescriptionService.createPrescription(
+                appointmentService.getAppointments(account.getPatient()).get(0), "test");
 
         System.out.println(accountService.canLogin("erenalyoruks@gmail.com", "test1s23"));
 

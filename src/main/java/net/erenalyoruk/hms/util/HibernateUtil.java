@@ -38,15 +38,15 @@ public class HibernateUtil {
 
     private void initializeHibernate() {
         sessionFactory =
-            new Configuration()
-                .configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Account.class)
-                .addAnnotatedClass(Patient.class)
-                .addAnnotatedClass(Admin.class)
-                .addAnnotatedClass(Doctor.class)
-                .addAnnotatedClass(Appointment.class)
-                .addAnnotatedClass(Prescription.class)
-                .buildSessionFactory();
+                new Configuration()
+                        .configure("hibernate.cfg.xml")
+                        .addAnnotatedClass(Account.class)
+                        .addAnnotatedClass(Patient.class)
+                        .addAnnotatedClass(Admin.class)
+                        .addAnnotatedClass(Doctor.class)
+                        .addAnnotatedClass(Appointment.class)
+                        .addAnnotatedClass(Prescription.class)
+                        .buildSessionFactory();
 
         currentSession = sessionFactory.getCurrentSession();
         currentSession.beginTransaction();

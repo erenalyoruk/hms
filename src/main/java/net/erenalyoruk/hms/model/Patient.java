@@ -13,19 +13,26 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Patient {
-    @Id
-    private Long id;
+    @Id private Long id;
 
     @MapsId
     @OneToOne
     @JoinColumn(name = "account_id", nullable = false, unique = true)
     private Account account;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "patient")
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            mappedBy = "patient")
     @CollectionTable(name = "appointments")
     private List<Appointment> appointments = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "patient")
+    @OneToMany(
+            fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            mappedBy = "patient")
     @CollectionTable(name = "prescriptions")
     private List<Prescription> prescriptions = new ArrayList<>();
 
