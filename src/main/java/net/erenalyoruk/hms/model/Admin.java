@@ -15,7 +15,7 @@ public class Admin {
     private Long id;
 
     @MapsId
-    @OneToOne(mappedBy = "admin")
+    @OneToOne
     @JoinColumn(name = "account_id", nullable = false, unique = true)
     private Account account;
 }

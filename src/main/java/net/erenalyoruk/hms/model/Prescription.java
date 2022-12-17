@@ -16,16 +16,16 @@ public class Prescription {
     @Column(name = "prescription_id")
     private Long id;
 
-    @OneToOne(mappedBy = "prescription")
-    @JoinColumn(name = "appointment_id", unique = true, nullable = false)
+    @OneToOne
+    @JoinColumn(name = "appointment_id", unique = true)
     private Appointment appointment;
 
-    @ManyToOne
-    @JoinColumn(name = "patient_id", referencedColumnName = "account_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "patient_id", referencedColumnName = "account_id")
     private Patient patient;
 
-    @ManyToOne
-    @JoinColumn(name = "doctor_id", referencedColumnName = "account_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "doctor_id", referencedColumnName = "account_id")
     private Doctor doctor;
 
     @Column(name = "info", length = 65535)

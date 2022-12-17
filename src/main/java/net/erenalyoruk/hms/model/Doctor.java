@@ -17,15 +17,35 @@ public class Doctor {
     private Long id;
 
     @MapsId
-    @OneToOne(mappedBy = "doctor")
+    @OneToOne
     @JoinColumn(name = "account_id", nullable = false, unique = true)
     private Account account;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "doctor")
-    @Column(name = "appointments", nullable = false)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "doctor")
+    @Column(name = "appointments")
     private List<Appointment> appointments = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "doctor")
-    @Column(name = "prescriptions", nullable = false)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "doctor")
+    @Column(name = "prescriptions")
     private List<Prescription> prescriptions = new ArrayList<>();
+
+    public void addAppointment(Appointment appointment) {
+        appointments.add(appointment);
+        appointment.setDoctor(this);
+    }
+
+    public void removeAppointment(Appointment appointment) {
+        appointments.remove(appointment);
+        appointment.setDoctor(null);
+    }
+
+    public void addPrescription(Prescription prescription) {
+        prescriptions.add(prescription);
+        prescription.setDoctor(this);
+    }
+
+    public void removePrescription(Prescription prescription) {
+        prescriptions.remove(prescription);
+        prescription.setDoctor(null);
+    }
 }

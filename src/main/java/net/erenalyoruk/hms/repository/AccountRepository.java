@@ -1,9 +1,10 @@
 package net.erenalyoruk.hms.repository;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 import java.util.List;
 import net.erenalyoruk.hms.model.Account;
+import net.erenalyoruk.hms.model.Doctor;
+import net.erenalyoruk.hms.model.Patient;
 
 public class AccountRepository {
     private final EntityManager em;
@@ -17,35 +18,47 @@ public class AccountRepository {
         return query.getResultList();
     }
 
-    public Account findById(Long id) {
+    public Account findOneById(Long id) {
         return em.find(Account.class, id);
     }
 
-    public Account findByCitizenNumber(String citizenNumber) {
+    public Account findOneByPatient(Patient patient) {
+        return findOneById(patient.getId());
+    }
+
+    public Account findOneByDoctor(Doctor doctor) {
+        return findOneById(doctor.getId());
+    }
+
+    public Account findOneByCitizenNumber(String citizenNumber) throws NoResultException {
         TypedQuery<Account> query = em.createQuery("FROM Account a WHERE a.citizenNumber = ?1", Account.class);
         query.setParameter(1, citizenNumber);
         return query.getSingleResult();
     }
 
-    public Account findByEmail(String email) {
+    public Account findOneByEmail(String email) throws NoResultException {
         TypedQuery<Account> query = em.createQuery("FROM Account a WHERE a.email = ?1", Account.class);
         query.setParameter(1, email);
         return query.getSingleResult();
     }
 
-    public void insertOne(Account account) {
+    public void save(Account account) throws EntityExistsException {
         em.getTransaction().begin();
         em.persist(account);
         em.getTransaction().commit();
     }
 
-    public void removeOne(Account account) {
+    public void removeOne(Account account) throws IllegalArgumentException {
         em.getTransaction().begin();
         em.remove(account);
         em.getTransaction().commit();
     }
 
     public void removeById(Long id) {
-        removeOne(findById(id));
+        removeOne(findOneById(id));
+    }
+
+    public EntityManager getEntityManager() {
+        return em;
     }
 }

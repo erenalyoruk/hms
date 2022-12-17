@@ -17,22 +17,38 @@ public class Appointment {
     @Column(name = "appointment_id")
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "appointment", cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "prescription_id")
     private Prescription prescription;
 
-    @ManyToOne
-    @JoinColumn(name = "patient_id", referencedColumnName = "account_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "patient_id", referencedColumnName = "account_id")
     private Patient patient;
 
-    @ManyToOne
-    @JoinColumn(name = "doctor_id", referencedColumnName = "account_id", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "doctor_id", referencedColumnName = "account_id")
     private Doctor doctor;
 
     @Column(name = "timestamp", nullable = false)
-    private Timestamp timestamp;
+    private Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private AppointmentStatus status = AppointmentStatus.WAITING;
+
+    public void createPrescription(String details) {
+        Prescription prescription = new Prescription();
+        prescription.setAppointment(this);
+        prescription.setDoctor(doctor);
+        prescription.setPatient(patient);
+        prescription.setDetails(details);
+        setPrescription(prescription);
+    }
+
+    public void removePrescription() {
+        prescription.getPatient().removePrescription(prescription);
+        prescription.getDoctor().removePrescription(prescription);
+        prescription.setAppointment(null);
+        setPrescription(null);
+    }
 }

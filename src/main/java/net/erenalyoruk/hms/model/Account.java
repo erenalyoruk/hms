@@ -1,15 +1,15 @@
 package net.erenalyoruk.hms.model;
 
 import jakarta.persistence.*;
+import java.sql.Timestamp;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import net.erenalyoruk.hms.util.HashingUtil;
 
 @Entity
 @Table(name = "accounts")
 @Getter
 @Setter
-@NoArgsConstructor
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,15 +17,15 @@ public class Account {
     private Long id;
 
     @PrimaryKeyJoinColumn
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "account", orphanRemoval = true)
     private Patient patient;
 
     @PrimaryKeyJoinColumn
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "account", orphanRemoval = true)
     private Doctor doctor;
 
     @PrimaryKeyJoinColumn
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "account", orphanRemoval = true)
     private Admin admin;
 
     @Column(name = "email", nullable = false)
@@ -41,6 +41,28 @@ public class Account {
     @Column(name = "gender", nullable = false)
     private Gender gender;
 
-    @Column(name = "age", nullable = false)
-    private int age;
+    @Column(name = "birth_date", nullable = false)
+    private Timestamp dateOfBirth;
+
+    public Account() {
+        Patient patient = new Patient();
+        patient.setAccount(this);
+        setPatient(patient);
+    }
+
+    public void setPassword(String password) {
+        this.password = HashingUtil.sha256(password);
+    }
+
+    public void makeDoctor() {
+        Doctor doctor = new Doctor();
+        setDoctor(doctor);
+        doctor.setAccount(this);
+    }
+
+    public void makeAdmin() {
+        Admin admin = new Admin();
+        setAdmin(admin);
+        admin.setAccount(this);
+    }
 }
