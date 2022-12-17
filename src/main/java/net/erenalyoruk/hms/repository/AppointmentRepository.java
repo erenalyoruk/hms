@@ -19,19 +19,6 @@ public class AppointmentRepository {
         return query.getResultList();
     }
 
-    public Appointment findOneById(Long id) {
-        return em.find(Appointment.class, id);
-    }
-
-    public Appointment findOneByPrescription(Prescription prescription) {
-        TypedQuery<Appointment> query = em.createQuery(
-            "FROM Appointment a WHERE a.prescription = ?1",
-            Appointment.class
-        );
-        query.setParameter(1, prescription);
-        return query.getSingleResult();
-    }
-
     public List<Appointment> findManyByDoctor(Doctor doctor) {
         TypedQuery<Appointment> query = em.createQuery("FROM Appointment a WHERE a.doctor = ?1", Appointment.class);
         query.setParameter(1, doctor);

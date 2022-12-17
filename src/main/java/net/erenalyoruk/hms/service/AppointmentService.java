@@ -13,6 +13,18 @@ public class AppointmentService {
         this.repository = repository;
     }
 
+    public List<Appointment> getAppointments() {
+        return repository.findAll();
+    }
+
+    public List<Appointment> getAppointments(AppointmentStatus status) {
+        return repository.findManyByStatus(status);
+    }
+
+    public List<Appointment> getAppointments(Timestamp timestamp) {
+        return repository.findManyByTimestamp(timestamp);
+    }
+
     public List<Appointment> getAppointments(Patient patient) {
         return repository.findManyByPatient(patient);
     }

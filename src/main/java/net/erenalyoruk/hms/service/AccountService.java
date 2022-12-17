@@ -22,6 +22,15 @@ public class AccountService {
         }
     }
 
+    public boolean removeAccount(Account account) {
+        try {
+            repository.remove(account);
+            return true;
+        } catch (IllegalArgumentException exception) {
+            return false;
+        }
+    }
+
     public boolean isEmailUnique(String email) {
         try {
             Account account = repository.findOneByEmail(email);

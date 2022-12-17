@@ -22,10 +22,6 @@ public class PrescriptionRepository {
         return query.getResultList();
     }
 
-    public Prescription findOneById(Long id) {
-        return em.find(Prescription.class, id);
-    }
-
     public Prescription findOneByAppointment(Appointment appointment) {
         TypedQuery<Prescription> query = em.createQuery(
             "FROM Prescription p WHERE p.appointment = ?1",

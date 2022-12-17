@@ -65,4 +65,8 @@ public class Account {
         setAdmin(admin);
         admin.setAccount(this);
     }
+
+    public boolean isAdmin() {
+        return admin != null;
+    }
 }

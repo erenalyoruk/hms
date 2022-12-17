@@ -48,17 +48,9 @@ public class AccountRepository {
         em.getTransaction().commit();
     }
 
-    public void removeOne(Account account) throws IllegalArgumentException {
+    public void remove(Account account) throws IllegalArgumentException {
         em.getTransaction().begin();
         em.remove(account);
         em.getTransaction().commit();
-    }
-
-    public void removeById(Long id) {
-        removeOne(findOneById(id));
-    }
-
-    public EntityManager getEntityManager() {
-        return em;
     }
 }

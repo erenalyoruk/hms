@@ -10,20 +10,21 @@ import net.erenalyoruk.hms.service.PrescriptionService;
 import net.erenalyoruk.hms.util.HibernateUtil;
 
 public class Main {
+    private static AccountService accountService;
+    private static AppointmentService appointmentService;
+    private static PrescriptionService prescriptionService;
 
     public static void main(String[] args) {
         HibernateUtil hibernateUtil = new HibernateUtil();
         EntityManager entityManager = hibernateUtil.getEntityManager();
+
         AccountRepository accountRepository = new AccountRepository(entityManager);
-        PatientRepository patientRepository = new PatientRepository(entityManager);
-        DoctorRepository doctorRepository = new DoctorRepository(entityManager);
         PrescriptionRepository prescriptionRepository = new PrescriptionRepository(entityManager);
         AppointmentRepository appointmentRepository = new AppointmentRepository(entityManager);
-        AdminRepository adminRepository = new AdminRepository(entityManager);
 
-        AccountService accountService = new AccountService(accountRepository);
-        AppointmentService appointmentService = new AppointmentService(appointmentRepository);
-        PrescriptionService prescriptionService = new PrescriptionService(prescriptionRepository);
+        accountService = new AccountService(accountRepository);
+        appointmentService = new AppointmentService(appointmentRepository);
+        prescriptionService = new PrescriptionService(prescriptionRepository);
 
         Account account = new Account();
         account.setGender(Gender.MALE);
@@ -42,10 +43,22 @@ public class Main {
 
         prescriptionService.createPrescription(appointmentService.getAppointments(account.getPatient()).get(0), "test");
 
-        prescriptionService.removePrescription(prescriptionRepository.findOneById(1L));
-
         System.out.println(accountService.canLogin("erenalyoruks@gmail.com", "test1s23"));
 
+        accountService.removeAccount(account);
+
         App.start(args);
+    }
+
+    public static AccountService getAccountService() {
+        return accountService;
+    }
+
+    public static AppointmentService getAppointmentService() {
+        return appointmentService;
+    }
+
+    public static PrescriptionService getPrescriptionService() {
+        return prescriptionService;
     }
 }
