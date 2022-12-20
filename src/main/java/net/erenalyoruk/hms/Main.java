@@ -1,7 +1,6 @@
 package net.erenalyoruk.hms;
 
 import jakarta.persistence.EntityManager;
-import java.sql.Timestamp;
 import net.erenalyoruk.hms.model.*;
 import net.erenalyoruk.hms.repository.*;
 import net.erenalyoruk.hms.service.AccountService;
@@ -25,16 +24,6 @@ public class Main {
         accountService = new AccountService(accountRepository);
         appointmentService = new AppointmentService(appointmentRepository);
         prescriptionService = new PrescriptionService(prescriptionRepository);
-
-        Account account = new Account();
-        account.setEmail("erenalyoruks@gmail.com");
-        account.setPassword("123");
-        account.setCitizenNumber("21050111077");
-        account.setFirstName("Eren");
-        account.setLastName("Alyörük");
-        account.setGender(Gender.MALE);
-        account.setDateOfBirth(new Timestamp(System.currentTimeMillis()));
-        accountService.createAccount(account);
 
         App.start(args);
     }

@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="hibernate.cfg.xml/Hibernate" uuid="0ad3dad2-c788-4494-92ba-3f4f755e472f">
+    <data-source source="LOCAL" name="H2" uuid="c5dbc605-4de7-43b9-a158-c188e09e78ad">
       <driver-ref>h2.unified</driver-ref>
       <synchronize>true</synchronize>
-      <imported>true</imported>
-      <remarks>Hibernate
-
-C:/Users/erena/IdeaProjects/hms/src/main/resources/hibernate.cfg.xml</remarks>
+      <configured-by-url>true</configured-by-url>
       <jdbc-driver>org.h2.Driver</jdbc-driver>
-      <jdbc-url>jdbc:h2:file:./h2</jdbc-url>
+      <jdbc-url>jdbc:h2:file:./h2;AUTO_SERVER=TRUE;</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

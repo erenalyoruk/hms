@@ -1,7 +1,10 @@
 package net.erenalyoruk.hms.provider;
 
 public enum SceneType {
-    LOGIN("login.fxml");
+    LOGIN("login.fxml"),
+    REGISTER("register.fxml"),
+    AUTH("auth.fxml"),
+    DUMMY("dummy.fxml");
 
     private final String url;
 

@@ -8,6 +8,7 @@ import net.erenalyoruk.hms.App;
 import net.erenalyoruk.hms.Main;
 import net.erenalyoruk.hms.model.Account;
 import net.erenalyoruk.hms.provider.SceneType;
+import net.erenalyoruk.hms.provider.SessionProvider;
 import net.erenalyoruk.hms.service.AccountService;
 
 public class LoginController {
@@ -33,7 +34,8 @@ public class LoginController {
         Account account =
                 accountService.loginAccount(emailField.getText(), passwordField.getText());
         if (account != null) {
-            // TODO: redirect to logged in fxml
+            SessionProvider.setAccount(account);
+            App.getSceneProvider().setScene(SceneType.DUMMY);
         }
 
         loginText.setVisible(true);

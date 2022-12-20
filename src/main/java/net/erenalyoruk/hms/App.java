@@ -17,7 +17,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         sceneProvider = new SceneProvider(stage);
-        sceneProvider.setScene(SceneType.LOGIN);
+        sceneProvider.setScene(SceneType.AUTH);
     }
 
     public static SceneProvider getSceneProvider() {

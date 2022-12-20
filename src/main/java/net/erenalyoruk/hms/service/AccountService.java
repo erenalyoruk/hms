@@ -62,7 +62,7 @@ public class AccountService {
                 return null;
             }
 
-            if (account.getPassword().equals(HashingUtil.sha256(unhashedPassword))) {
+            if (account.getPassword().equalsIgnoreCase(HashingUtil.sha256(unhashedPassword))) {
                 return account;
             }
         } catch (NoResultException ignored) {
