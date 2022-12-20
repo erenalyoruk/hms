@@ -22,3 +22,8 @@ Change `create` to `update` in `resources/hibernate.cfg.xml` if you do not want 
 3. Test it.
 4. Run `spotlessApply` for code formatting.
 5. Make pull request. Do not merge directly.
+
+### How to add screens?
+
+1. Create your FXML.
+2. Add it in enum.
