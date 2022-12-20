@@ -49,12 +49,25 @@ public class AccountService {
         }
     }
 
-    public boolean canLogin(String email, String unhashedPassword) {
+    public Account loginAccount(String email, String unhashedPassword) {
         try {
-            Account temp = repository.findOneByEmail(email);
-            return temp.getPassword().equals(HashingUtil.sha256(unhashedPassword));
-        } catch (NoResultException exception) {
-            return false;
+            Account account;
+            if (email.contains("@")) {
+                account = repository.findOneByEmail(email);
+            } else {
+                account = repository.findOneByCitizenNumber(email);
+            }
+
+            if (account == null) {
+                return null;
+            }
+
+            if (account.getPassword().equals(HashingUtil.sha256(unhashedPassword))) {
+                return account;
+            }
+        } catch (NoResultException ignored) {
         }
+
+        return null;
     }
 }

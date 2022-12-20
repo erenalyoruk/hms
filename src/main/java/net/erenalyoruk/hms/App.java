@@ -1,22 +1,26 @@
 package net.erenalyoruk.hms;
 
+import java.io.IOException;
 import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import net.erenalyoruk.hms.provider.SceneProvider;
+import net.erenalyoruk.hms.provider.SceneType;
 
 public class App extends Application {
 
-    @Override
-    public void start(Stage stage) {
-        Label label = new Label("Label");
-        Scene scene = new Scene(new StackPane(label), 800, 600);
-        stage.setScene(scene);
-        stage.show();
-    }
+    private static SceneProvider sceneProvider;
 
     public static void start(String[] args) {
         launch(args);
+    }
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        sceneProvider = new SceneProvider(stage);
+        sceneProvider.setScene(SceneType.LOGIN);
+    }
+
+    public static SceneProvider getSceneProvider() {
+        return sceneProvider;
     }
 }

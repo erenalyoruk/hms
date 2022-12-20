@@ -27,27 +27,14 @@ public class Main {
         prescriptionService = new PrescriptionService(prescriptionRepository);
 
         Account account = new Account();
-        account.setGender(Gender.MALE);
         account.setEmail("erenalyoruks@gmail.com");
-        account.setCitizenNumber("123");
-        account.setPassword("test123");
-        account.setDateOfBirth(new Timestamp(System.currentTimeMillis()));
-        account.makeDoctor();
+        account.setPassword("123");
+        account.setCitizenNumber("21050111077");
         account.setFirstName("Eren");
         account.setLastName("Alyörük");
+        account.setGender(Gender.MALE);
+        account.setDateOfBirth(new Timestamp(System.currentTimeMillis()));
         accountService.createAccount(account);
-
-        appointmentService.createAppointment(
-                account.getPatient(),
-                account.getDoctor(),
-                new Timestamp(System.currentTimeMillis()));
-
-        prescriptionService.createPrescription(
-                appointmentService.getAppointments(account.getPatient()).get(0), "test");
-
-        System.out.println(accountService.canLogin("erenalyoruks@gmail.com", "test1s23"));
-
-        accountService.removeAccount(account);
 
         App.start(args);
     }
