@@ -56,6 +56,19 @@ public class RegisterController {
             return;
         }
 
+        if (citizenNumberField.getText().length() != 11
+                || !citizenNumberField.getText().matches("[0-9]+")) {
+            registerText.setText("Please enter valid citizen number.");
+            registerText.setVisible(true);
+            return;
+        }
+
+        if (!emailField.getText().matches("^(.+)@(.+)$")) {
+            registerText.setText("Please enter valid email.");
+            registerText.setVisible(true);
+            return;
+        }
+
         if (birthDate.getValue().isAfter(LocalDate.from(ZonedDateTime.now()))) {
             return;
         }
@@ -63,11 +76,13 @@ public class RegisterController {
         if (!Main.getAccountService().isCitizenNumberUnique(citizenNumberField.getText())) {
             registerText.setText("Citizen number must be unique.");
             registerText.setVisible(true);
+            return;
         }
 
         if (!Main.getAccountService().isEmailUnique(emailField.getText())) {
             registerText.setText("Email must be unique.");
             registerText.setVisible(true);
+            return;
         }
 
         Account account = new Account();
@@ -77,6 +92,7 @@ public class RegisterController {
         account.setFirstName(firstNameField.getText());
         account.setLastName(lastNameField.getText());
         account.setGender(genderChoice.getValue());
+        account.makeDoctor();
 
         Calendar combinedCalendar = new GregorianCalendar(TimeZone.getTimeZone("Europe/Istanbul"));
         combinedCalendar.clear();

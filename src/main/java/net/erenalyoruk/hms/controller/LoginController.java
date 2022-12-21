@@ -35,7 +35,7 @@ public class LoginController {
                 accountService.loginAccount(emailField.getText(), passwordField.getText());
         if (account != null) {
             SessionProvider.setAccount(account);
-            App.getSceneProvider().setScene(SceneType.DUMMY);
+            App.getSceneProvider().setScene(SceneType.PROFILE);
         }
 
         loginText.setVisible(true);

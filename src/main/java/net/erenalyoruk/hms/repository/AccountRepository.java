@@ -18,6 +18,13 @@ public class AccountRepository {
         return query.getResultList();
     }
 
+    public List<Account> findDoctors() {
+        TypedQuery<Account> query =
+                em.createQuery(
+                        "FROM Account account WHERE account.doctor IS NOT NULL", Account.class);
+        return query.getResultList();
+    }
+
     public Account findOneById(Long id) {
         return em.find(Account.class, id);
     }

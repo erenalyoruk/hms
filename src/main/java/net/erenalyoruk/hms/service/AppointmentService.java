@@ -33,16 +33,16 @@ public class AppointmentService {
         return repository.findManyByDoctor(doctor);
     }
 
-    public boolean createAppointment(Patient patient, Doctor doctor, Timestamp timestamp) {
+    public Appointment createAppointment(Patient patient, Doctor doctor, Timestamp timestamp) {
         try {
             Appointment appointment = new Appointment();
             appointment.setTimestamp(timestamp);
             patient.addAppointment(appointment);
             doctor.addAppointment(appointment);
             repository.save(appointment);
-            return true;
+            return appointment;
         } catch (EntityExistsException exception) {
-            return false;
+            return null;
         }
     }
 

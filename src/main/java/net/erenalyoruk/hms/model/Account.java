@@ -75,4 +75,8 @@ public class Account {
     public boolean isAdmin() {
         return admin != null;
     }
+
+    public boolean isDoctor() {
+        return doctor != null;
+    }
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="net.erenalyoruk.hms.controller.NavigationController">
+	<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0">
+		<Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#appointments" text="Appointments" />
+		<Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#profile" text="Profile" />
+      <Button fx:id="switchButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#switchView" text="Switch to Doctor" />
+      <Button fx:id="adminButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#admin" text="Admin" />
+		<Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#logout" prefWidth="92.0" text="Log out" />
+	</VBox>
+</AnchorPane>

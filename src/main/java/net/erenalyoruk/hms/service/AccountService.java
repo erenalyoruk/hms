@@ -2,6 +2,7 @@ package net.erenalyoruk.hms.service;
 
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.NoResultException;
+import java.util.List;
 import net.erenalyoruk.hms.model.Account;
 import net.erenalyoruk.hms.repository.AccountRepository;
 import net.erenalyoruk.hms.util.HashingUtil;
@@ -11,6 +12,10 @@ public class AccountService {
 
     public AccountService(AccountRepository repository) {
         this.repository = repository;
+    }
+
+    public List<Account> findAllDoctors() {
+        return repository.findDoctors();
     }
 
     public boolean createAccount(Account account) {
