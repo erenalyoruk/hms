@@ -46,6 +46,11 @@ public class AppointmentService {
         }
     }
 
+    public void setStatus(Appointment appointment, AppointmentStatus status) {
+        appointment.setStatus(status);
+        repository.save(appointment);
+    }
+
     public boolean removeAppointment(Appointment appointment) {
         Doctor doctor = appointment.getDoctor();
         Patient patient = appointment.getPatient();
