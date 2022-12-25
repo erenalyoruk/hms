@@ -92,7 +92,6 @@ public class RegisterController {
         account.setFirstName(firstNameField.getText());
         account.setLastName(lastNameField.getText());
         account.setGender(genderChoice.getValue());
-        account.makeDoctor();
 
         Calendar combinedCalendar = new GregorianCalendar(TimeZone.getTimeZone("Europe/Istanbul"));
         combinedCalendar.clear();

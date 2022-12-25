@@ -1,7 +1,6 @@
 package net.erenalyoruk.hms;
 
 import jakarta.persistence.EntityManager;
-import net.erenalyoruk.hms.model.*;
 import net.erenalyoruk.hms.repository.*;
 import net.erenalyoruk.hms.service.AccountService;
 import net.erenalyoruk.hms.service.AppointmentService;

@@ -28,40 +28,36 @@
 		<Text strokeType="OUTSIDE" strokeWidth="0.0" text="Create account to use system." />
 		<GridPane hgap="10.0" vgap="10.0">
 			<columnConstraints>
-				<ColumnConstraints halignment="LEFT" hgrow="ALWAYS" />
-				<ColumnConstraints prefWidth="335.0" />
+				<ColumnConstraints halignment="LEFT" hgrow="ALWAYS"/>
+				<ColumnConstraints prefWidth="335.0"/>
 			</columnConstraints>
 			<rowConstraints>
-				<RowConstraints valignment="CENTER" />
-				<RowConstraints valignment="CENTER" />
-				<RowConstraints valignment="CENTER" />
-				<RowConstraints valignment="CENTER" />
-				<RowConstraints valignment="CENTER" />
-				<RowConstraints valignment="CENTER" />
-				<RowConstraints valignment="CENTER" />
+				<RowConstraints valignment="CENTER"/>
+				<RowConstraints valignment="CENTER"/>
+				<RowConstraints valignment="CENTER"/>
+				<RowConstraints valignment="CENTER"/>
+				<RowConstraints valignment="CENTER"/>
+				<RowConstraints valignment="CENTER"/>
+				<RowConstraints valignment="CENTER"/>
 			</rowConstraints>
-			<children>
-				<Label text="Citizen Number" />
-				<Label text="Email" GridPane.rowIndex="1" />
-				<Label text="Password" GridPane.rowIndex="2" />
-				<Label text="First Name" GridPane.rowIndex="3" />
-				<Label text="Last Name" GridPane.rowIndex="4" />
-				<Label text="Gender" GridPane.rowIndex="5" />
-				<Label text="Birth Date" GridPane.rowIndex="6" />
-				<TextField fx:id="citizenNumberField" prefWidth="199.0" GridPane.columnIndex="1" />
-				<TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-				<PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-				<TextField fx:id="firstNameField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-				<TextField fx:id="lastNameField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-				<ChoiceBox fx:id="genderChoice" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-				<DatePicker fx:id="birthDate" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.vgrow="ALWAYS" />
-			</children>
+			<Label text="Citizen Number"/>
+			<Label text="Email" GridPane.rowIndex="1"/>
+			<Label text="Password" GridPane.rowIndex="2"/>
+			<Label text="First Name" GridPane.rowIndex="3"/>
+			<Label text="Last Name" GridPane.rowIndex="4"/>
+			<Label text="Gender" GridPane.rowIndex="5"/>
+			<Label text="Birth Date" GridPane.rowIndex="6"/>
+			<TextField fx:id="citizenNumberField" prefWidth="199.0" GridPane.columnIndex="1"/>
+			<TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+			<PasswordField fx:id="passwordField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+			<TextField fx:id="firstNameField" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+			<TextField fx:id="lastNameField" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+			<ChoiceBox fx:id="genderChoice" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+			<DatePicker fx:id="birthDate" GridPane.columnIndex="1" GridPane.rowIndex="6" GridPane.vgrow="ALWAYS"/>
 		</GridPane>
 		<Text fx:id="registerText" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="ERROR." />
 		<VBox alignment="CENTER_RIGHT" VBox.vgrow="ALWAYS">
-			<children>
-				<Button mnemonicParsing="false" onAction="#register" text="Register" />
-			</children>
+			<Button mnemonicParsing="false" onAction="#register" text="Register"/>
 		</VBox>
 	</VBox>
 </AnchorPane>

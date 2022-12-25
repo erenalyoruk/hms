@@ -44,24 +44,24 @@ public class AppointmentListController {
                     LocalDateTime t = av.getValue().getTimestamp().toLocalDateTime();
                     String dateStr =
                             t.getDayOfMonth() + "." + (t.getMonthValue() - 1) + "." + t.getYear();
-                    return new ReadOnlyObjectWrapper<String>(dateStr);
+                    return new ReadOnlyObjectWrapper<>(dateStr);
                 });
         doctorColumn.setCellValueFactory(
                 av -> {
                     Account account = av.getValue().getDoctor().getAccount();
                     String name = account.getFirstName() + " " + account.getLastName();
-                    return new ReadOnlyObjectWrapper<String>(name);
+                    return new ReadOnlyObjectWrapper<>(name);
                 });
         prescriptionColumn.setCellValueFactory(
                 av -> {
                     if (av.getValue().getPrescription() == null) {
-                        return new ReadOnlyObjectWrapper<String>("");
+                        return new ReadOnlyObjectWrapper<>("");
                     }
 
-                    return new ReadOnlyObjectWrapper<String>(
+                    return new ReadOnlyObjectWrapper<>(
                             av.getValue().getPrescription().getDetails());
                 });
-        statusColumn.setCellValueFactory(new PropertyValueFactory<Appointment, String>("status"));
+        statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         Account account = SessionProvider.getAccount();
         List<Appointment> appointments = account.getPatient().getAppointments();
