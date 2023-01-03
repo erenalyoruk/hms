@@ -36,21 +36,41 @@ public class Patient {
     @CollectionTable(name = "prescriptions")
     private List<Prescription> prescriptions = new ArrayList<>();
 
+    /**
+     * Add appointment to patient.
+     *
+     * @param appointment Appointment
+     */
     public void addAppointment(Appointment appointment) {
         appointments.add(appointment);
         appointment.setPatient(this);
     }
 
+    /**
+     * Remove appointment from patient.
+     *
+     * @param appointment Appointment
+     */
     public void removeAppointment(Appointment appointment) {
         appointments.remove(appointment);
         appointment.setPatient(null);
     }
 
+    /**
+     * Add prescription that written to patient.
+     *
+     * @param prescription Prescription
+     */
     public void addPrescription(Prescription prescription) {
         prescriptions.add(prescription);
         prescription.setPatient(this);
     }
 
+    /**
+     * Remove prescription that written to patient.
+     *
+     * @param prescription Prescription
+     */
     public void removePrescription(Prescription prescription) {
         prescriptions.remove(prescription);
         prescription.setPatient(null);

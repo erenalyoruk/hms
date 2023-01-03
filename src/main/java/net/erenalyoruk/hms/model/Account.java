@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 import net.erenalyoruk.hms.util.HashingUtil;
 
+/** Base class of user presentation. */
 @Entity
 @Table(name = "accounts")
 @Getter
@@ -50,32 +51,43 @@ public class Account {
     @Column(name = "birth_date", nullable = false)
     private Timestamp dateOfBirth;
 
+    /** Grants patient permissions to account by default in constructor. */
     public Account() {
         Patient patient = new Patient();
         patient.setAccount(this);
         setPatient(patient);
     }
 
+    /**
+     * Sets password of account to raw string. Internally it hashes this raw string to SHA-256
+     * format.
+     *
+     * @param password Raw password
+     */
     public void setPassword(String password) {
         this.password = HashingUtil.sha256(password);
     }
 
+    /** Grants doctor permissions to account. */
     public void makeDoctor() {
         Doctor doctor = new Doctor();
         setDoctor(doctor);
         doctor.setAccount(this);
     }
 
+    /** Grants admin permissions to account. */
     public void makeAdmin() {
         Admin admin = new Admin();
         setAdmin(admin);
         admin.setAccount(this);
     }
 
+    /** Checks if account has admin permissions. */
     public boolean isAdmin() {
         return admin != null;
     }
 
+    /** Checks if account has doctor permissions. */
     public boolean isDoctor() {
         return doctor != null;
     }

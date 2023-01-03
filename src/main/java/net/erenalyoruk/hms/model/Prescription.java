@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/** Model of prescription. Appointment and prescription have OneToOne relationship between them. */
 @Entity
 @Table(name = "prescriptions")
 @Getter

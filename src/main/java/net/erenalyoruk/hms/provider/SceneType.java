@@ -1,5 +1,6 @@
 package net.erenalyoruk.hms.provider;
 
+/** Abstraction of scene types. */
 public enum SceneType {
     AUTH("auth.fxml"),
     PROFILE("profile.fxml"),
@@ -12,6 +13,11 @@ public enum SceneType {
         this.url = url;
     }
 
+    /**
+     * Returns location of the scene.
+     *
+     * @return URL of scene.
+     */
     public String getUrl() {
         return url;
     }

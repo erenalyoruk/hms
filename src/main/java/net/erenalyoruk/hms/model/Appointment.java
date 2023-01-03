@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/** Model of appointment. Appointment and prescription have OneToOne relationship between them. */
 @Entity
 @Table(name = "appointments")
 @Getter
@@ -40,6 +41,11 @@ public class Appointment {
     @Column(name = "status", nullable = false)
     private AppointmentStatus status = AppointmentStatus.WAITING;
 
+    /**
+     * Create prescription for appointment by given details.
+     *
+     * @param details Prescription details of appointment.
+     */
     public void createPrescription(String details) {
         Prescription prescription = new Prescription();
         prescription.setAppointment(this);
@@ -49,6 +55,7 @@ public class Appointment {
         setPrescription(prescription);
     }
 
+    /** Remove prescription from appointment. */
     public void removePrescription() {
         prescription.getPatient().removePrescription(prescription);
         prescription.getDoctor().removePrescription(prescription);
