@@ -1,0 +1,9 @@
+net.erenalyoruk.hms
+net.erenalyoruk.hms.controller
+net.erenalyoruk.hms.controller.doctor
+net.erenalyoruk.hms.controller.patient
+net.erenalyoruk.hms.model
+net.erenalyoruk.hms.provider
+net.erenalyoruk.hms.repository
+net.erenalyoruk.hms.service
+net.erenalyoruk.hms.util
