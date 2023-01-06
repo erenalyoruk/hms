@@ -18,5 +18,5 @@ $ ./gradlew.bat run
 ### UNIX
 
 ```sh
-$ gradlew run
+$ ./gradlew run
 ```
