@@ -5,25 +5,18 @@ JavaFX Desktop application for managing appointments.
 ## Requirements
 
 - JDK 17
-- JAVA_HOME should be set for gradle.
+- JAVA_HOME should be set for Gradle.
 
-## Collaboration
+## Compile and run
 
-Change `create` to `update` in `resources/hibernate.cfg.xml` if you do not want to create fresh database every launch.
+### Windows
 
-```xml
-<property name="hbm2ddl.auto">create</property>
+```sh
+$ ./gradlew.bat run
 ```
 
-### Steps to contribute
+### UNIX
 
-1. Create new branch.
-2. Make changes.
-3. Test it.
-4. Run `spotlessApply` for code formatting.
-5. Make pull request. Do not merge directly.
-
-### How to add screens?
-
-1. Create your FXML.
-2. Add it in enum.
+```sh
+$ gradlew run
+```
